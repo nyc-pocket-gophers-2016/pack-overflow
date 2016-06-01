@@ -5,4 +5,8 @@ class Answer < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates :body, presence: true
+
+  def is_best?
+   return is_best
+  end
 end

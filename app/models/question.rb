@@ -7,4 +7,9 @@ class Question < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates :title, :body, presence: true
+
+  def best_answer
+    self.answers.find { |answer| answer.is_best }
+    # this will be nil or the best answer
+  end
 end
