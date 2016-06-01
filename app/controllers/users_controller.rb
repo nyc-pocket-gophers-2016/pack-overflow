@@ -3,7 +3,7 @@ get '/users/new' do
 end
 
 post '/users' do
-  User.build(username: params[:username], email: params[:email], password: params[:password])
+  @user = User.build(username: params[:username], email: params[:email], password: params[:password])
 
   @user.save ? redirect('/') : erb(:'users/new')
 end
