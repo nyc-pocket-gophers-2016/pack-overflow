@@ -1,0 +1,11 @@
+<h1><%=@question.title%></h1>
+<h3><%=@question.body%></h3>
+
+<%if best_answer%>
+  <div><%= best_answer %></div>
+<%end%>
+
+<!-- print in order of upvotes -->
+<%@question.answers.each do |answer|%>
+  <div><%= answer %><% if !answer.is_best? %></div>
+<%end%>
