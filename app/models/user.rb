@@ -1,4 +1,11 @@
 class User < ActiveRecord::Base
   has_secure_password
-  # Remember to create a migration!
+  
+  has_many :questions
+  has_many :answers
+  has_many :votes
+  has_many :comments
+
+  validates :username, :email, presence: true
+  validates :username, :email, uniqueness: true
 end
