@@ -6,5 +6,7 @@ end
 get '/questions/new' do
   if request.xhr?
     erb :'questions/_new_question_form', layout: false
+  else
+    erb :'questions/new'
   end
 end
