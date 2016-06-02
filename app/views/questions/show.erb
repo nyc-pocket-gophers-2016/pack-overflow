@@ -1,6 +1,9 @@
 <h1><%=@question.title%></h1>
 <h3><%=@question.body%></h3>
 
+  <div id='question_comment_container'><button id="new_question_comment_button">Question Comment</button></div>
+  <div id='question_id'><%@question.id%></div>
+
 <% if @question.best_answer %>
   <h4>Top answer:</h4>
   <h3><%= @question.best_answer.body %></h3>
