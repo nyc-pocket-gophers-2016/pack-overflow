@@ -9,7 +9,7 @@ post '/users' do
 end
 
 get '/users/:id' do
-  user = User.find_by(id: params[:id])
+  @user = User.find_by(id: params[:id])
 
   erb :'users/show'
 end
