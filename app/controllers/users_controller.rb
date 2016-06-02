@@ -3,9 +3,14 @@ get '/users/new' do
 end
 
 post '/users' do
-  @user = User.build(username: params[:username], email: params[:email], password: params[:password])
+  @user = User.create(username: params[:username], email: params[:email], password: params[:password])
 
-  @user.save ? redirect('/') : erb(:'users/new')
+  if @user
+    session[:user_id] = @user.id
+    redirect '/'
+  else
+    erb :'users/new'
+  end
 end
 
 get '/users/:id' do
