@@ -30,7 +30,6 @@
     <div id="login-toolbar">
       <% if current_user %>
         <a href="/users/<%= current_user.id %>"><%=current_user.username%></a>
-        <a href="/users/show"><%=current_user.username%></a>
         <a href="/logout">logout</a>
       <% else %>
         <a href="/login">login</a>
