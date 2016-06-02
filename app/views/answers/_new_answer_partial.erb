@@ -1,13 +1,13 @@
-<div id="new-answer-partial">
-
-  <div id="error"><% if @error %>
-    <p><%= @error %></p>
-  <%end%></div>
+<div id="partial">
 
   <form action="/questions/<%=@question.id%>" method="post">
     Your answer:
     <input type="text" name="body">
     <input type="submit" value="Submit">
   </form>
+
+  <div id="error"><% if @error %>
+    <p><%= @error %></p>
+  <%end%></div>
   
 </div>
