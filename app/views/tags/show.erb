@@ -1,0 +1,7 @@
+<%=@tag.name%>
+<br>
+<ol>
+<%@tag.questions.each do |question|%>
+<li><%=question.title%></li>
+<% end %>
+</ol>
