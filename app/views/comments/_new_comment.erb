@@ -1,0 +1,13 @@
+<div id="new-comment-partial">
+
+  <div id="error"><% if @error %>
+    <p><%= @error %></p>
+  <%end%></div>
+
+  <form action="/comments/<%=@comments.id%>" method="post">
+    Comment:
+    <input type="text" name="body">
+    <input type="submit" value="Submit">
+  </form>
+  
+ </div>
