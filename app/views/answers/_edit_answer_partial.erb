@@ -1,0 +1,15 @@
+<div id="partial">
+
+  <h3>Edit answer:</h3>
+
+  <form action="/questions/<%=@question.id%>" method="post" >
+    <input type="hidden" name="_method" value="put">
+    <input type="text" name="answer[body]" value="<%= @answer.body %>">
+    <input type="submit" value="Update Answer">
+  </form>
+
+  <div id="error"><% if @error %>
+    <p><%= @error %></p>
+  <%end%></div>
+
+</div>
