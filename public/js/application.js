@@ -16,10 +16,20 @@ $(document).ready(function() {
   });
 
   $('#question_container').on('submit', '#new_question_form', function(event){
+    event.preventDefault();
+
+    $target = $(event.target);
 
     $.ajax({
-      url: '/questions'
-    })
+      url: '/questions',
+      type: 'post',
+      data: $target.serialize()
+    }).done(function(response){
+      $('#question_list_container').find('ul').prepend(response);
+      $('#new_question_form').remove();
+      $('#new_question_button').show();
+      // $target.clear();
+    });
 
   });
 

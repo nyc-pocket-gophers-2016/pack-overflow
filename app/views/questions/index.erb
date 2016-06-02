@@ -1,11 +1,15 @@
 <div>
     <div id='question_container'><button id="new_question_button">Ask a question</button></div>
+
+<div id="question_list_container">
   <% if logged_in?%>
   <% end %>
   <ul>
-    <% @questions.each do |question| %>
+    <% @questions.reverse.each do |question| %>
       <h3><a href='/questions/<%= question.id %>'><%= question.title %></h3></a>
       <li>Asked by <%= question.user.username %> on <%= question.created_at %></li>
     <% end %>
   </ul>
+</div>
+
 </div>

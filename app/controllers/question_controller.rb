@@ -12,13 +12,15 @@ get '/questions/new' do
 end
 
 post '/questions' do
-  # binding.pry
   # params[:question][:view_count] = 0
   params[:question][:user_id] = current_user.id
 
   @question = Question.new(params[:question]) #create new question
+  # binding.pry
   if @question.save #saves new question or returns false if unsuccessful
-    redirect '/questions' #redirect back to questions index page
+
+  # binding.pry
+    erb :'questions/_question_item', layout: false, locals: {question: @question} #redirect back to questions index page
   else
     erb :'questions' # show new questions view again(potentially displaying errors)
   end
