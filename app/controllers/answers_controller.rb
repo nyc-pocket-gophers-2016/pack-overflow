@@ -9,19 +9,26 @@ post '/questions/:id/answers' do
   end
 end
 
-
-#editing answer
+#edit answer
 put 'questions/:id/answers/:id' do 
   @question = Question.find_by(id: params[:id])
   @answer = Answer.find_by(id: params[:id])
-  #logic to edit answer using partial form
+  @answer.assign_attributes(params[:answer])  
+  if @answer.save #should there be an xhr request?
+    redirect :'/questions/#{@question.id}'
+  else
+    # erb :'/questions/edit'
+  end
 end
-
 
 #delete answer
 delete 'questions/:id/answers/:id' do
   @question = Question.find_by(id: params[:id])
   @answer = Answer.find_by(params[:id])
-
-  redirect "/questions/#{@question.id}"
+  if request.xhr?
+    @answer.destroy
+  else
+    @answer.destroy
+    redirect "/questions/#{@question.id}"
+  end
 end
