@@ -1,4 +1,4 @@
-post '/questions/:id/comments'
+post '/questions/:id/comments' do
 	@question = Question.find_by(id: params[:id])
  	@comment = @question.comments.build(body: params[:body], user: current_user)
  		if @comments.save
@@ -6,6 +6,7 @@ post '/questions/:id/comments'
  		else
  			@error = "Your comment in invalid."
     		erb :'/questions/#{@question.id}'
+    	end
 end
 
 # put 'questions/:id/comments/:id'
@@ -16,13 +17,13 @@ end
 #  		else
 # end
 
-delete 'questions/:id/comments/:id'
+delete 'questions/:id/comments/:id' do
 	@question = Question.find_by(id: params[:id])
     @comment = Comment.find_by(params[:id])
 	@comment.destroy
 end
 
-post '/answer/:id/comments'
+post '/answer/:id/comments' do
 	@answer = Answer.find_by(id: params[:id])
  	@comment = @answer.comments.build(body: params[:body], users: current_user)
  		if @comments.save
@@ -30,6 +31,7 @@ post '/answer/:id/comments'
  		else
  			@error = "Your comment in invalid."
     		erb :'/answers/#{@answer.id}'
+    	end
 end
 
 # put '/answer/:id/comments/:id'
@@ -40,7 +42,7 @@ end
 #  		else
 # end
 
-delete '/answer/:id/comments/:id'
+delete '/answer/:id/comments/:id' do
 	@answer = Answer.find_by(id: params[:id])
     @comment = Comment.find_by(params[:id])
 	@comment.destroy
