@@ -3,7 +3,7 @@ post '/questions/:id/comments'
  	@comment = @question.comments.build(body: params[:body], user: current_user)
  		if @comments.save
  			redirect "/questions/#{@question.id}"
- 		else 
+ 		else
  			@error = "Your comment in invalid."
     		erb :'/questions/#{@question.id}'
 end
@@ -13,7 +13,7 @@ end
 #  	@comment = question.comments.find(id: params[:id])
 #  		if @comments.save
 #  		erb :'comments/show'
-#  		else 
+#  		else
 # end
 
 delete 'questions/:id/comments/:id'
@@ -27,7 +27,7 @@ post '/answer/:id/comments'
  	@comment = @answer.comments.build(body: params[:body], users: current_user)
  		if @comments.save
  		redirect "/answers/#{@answers.id}"
- 		else 
+ 		else
  			@error = "Your comment in invalid."
     		erb :'/answers/#{@answer.id}'
 end
@@ -37,7 +37,7 @@ end
 #  	@comment = answers.comments.find(id: params[:id])
 #  		if @comments.save
 #  		erb :'comments/show'
-#  		else 
+#  		else
 # end
 
 delete '/answer/:id/comments/:id'
@@ -45,4 +45,3 @@ delete '/answer/:id/comments/:id'
     @comment = Comment.find_by(params[:id])
 	@comment.destroy
 end
-	
