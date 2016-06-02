@@ -1,12 +1,16 @@
 get '/login' do
-  logged_in? ? redirect('/') : erb(:'sessions/new')
+  if logged_in?
+    redirect('/')
+  else
+    erb(:'sessions/new')
+  end
 end
 
 post '/login' do
-  user = User.find_by(email: params[:email])
+  @user = User.find_by(email: params[:email])
 
-  if user && user.authenticate(params[:password])
-    session[:user_id] = user.id
+  if @user && @user.authenticate(params[:password])
+    session[:user_id] = @user.id
     redirect '/'
   else
     @errors = ["Incorrect username or password"]
@@ -15,6 +19,6 @@ post '/login' do
 end
 
 delete '/logout' do
-  session[current_user.id].destroy
+  session[:user_id].destroy
   redirect '/'
 end
