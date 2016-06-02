@@ -79,7 +79,24 @@ Question.all.each do |question|
   5.times do
     user_index = rand(4)
     comment = question.comments.build(
-     body: Faker::Internet.user_name,
+     body: Faker::Hipster.sentence,
+     # comment_count: rand(1000),
+     user: User.all[user_index],
+     created_at: Time.now - rand(20000))
+    comment.save
+    # vote_count = rand(100)
+    # vote_count.times do
+      # comment.votes.build(value: 1)
+
+    # end
+  end
+end
+
+Answer.all.each do |question|
+  5.times do
+    user_index = rand(4)
+    comment = question.comments.build(
+     body: Faker::Hipster.sentence,
      # comment_count: rand(1000),
      user: User.all[user_index],
      created_at: Time.now - rand(20000))

@@ -1,0 +1,10 @@
+<div>
+  <h1>Pack Overflow</h1>
+  <ul>
+    <% @questions.each do |question| %>
+      <h3><%= question.title %></h3>
+      <li><%= question.body %></li>
+      <li>Asked by <%= question.user.username %> on <%= question.created_at %></li>
+    <% end %>
+  </ul>
+</div>
