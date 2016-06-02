@@ -10,3 +10,8 @@ get '/questions/new' do
     erb :'questions/new'
   end
 end
+
+get '/questions/:id' do
+  @question = Question.find(params[:id]) #define instance variable for view
+  erb :'questions/show' #show single question view
+end

@@ -31,7 +31,7 @@ Question.create!(questions)
 answers = [
 {body: "This question is great.", is_best: false, user: User.first, question: Question.first},
 {body: "Do not pack anything.", is_best: false, user: User.second, question: Question.first},
-{body: "In giant tupperware.", is_best: false, user: User.third, question: Question.first},
+{body: "In giant tupperware.", is_best: true, user: User.third, question: Question.first},
 {body: "Money and bear repelent.", is_best: false, user: User.fourth, question: Question.first},
 
 {body: "This question is great.", is_best: false, user: User.first, question: Question.second},
