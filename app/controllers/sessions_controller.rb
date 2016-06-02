@@ -18,7 +18,7 @@ post '/login' do
   end
 end
 
-delete '/logout' do
-  session[:user_id].destroy
+get '/logout' do
+  session.clear
   redirect '/'
 end
