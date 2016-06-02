@@ -22,11 +22,14 @@
 <body>
 <div id="content">
   <header>
+  <h1 class="pack-header"><span class="pack-span">pack</span>overflow</h1>
     <div id="login-toolbar">
       <% if current_user %>
+        <a href="/users/show"><%=current_user.username%></a>
         <a href="/logout">Logout</a>
       <% else %>
         <a href="/login">Login</a>
+        <a href="/users/new">Sign Up!</a>
       <% end %>
   </header>
   <%= yield %>
