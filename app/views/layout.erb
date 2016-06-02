@@ -25,7 +25,7 @@
   <h1 class="pack-header"><span class="pack-span">pack</span>overflow</h1>
     <div id="login-toolbar">
       <% if current_user %>
-        <a href="/users/show"><%=current_user.username%></a>
+        <a href="/users/<%= current_user.id %>"><%=current_user.username%></a>
         <a href="/logout">Logout</a>
       <% else %>
         <a href="/login">Login</a>
