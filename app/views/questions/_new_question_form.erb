@@ -1,9 +1,9 @@
-<form id="new_question_form" class="center hidden">
+<form id="new_question_form" class="center hidden" method='post' action='/questions'>
   <label for="commenter_name">Title:</label>
-  <input type="text" id="commenter_name"></input>
+  <input name="question[title]" type="text" id="commenter_name"></input>
   <br>
   <label for="comment_text">Body:</label>
-  <textarea id="comment_text"></textarea>
+  <textarea name="question[body]" id="comment_text"></textarea>
   <br>
   <input type="submit" class="button" value="Submit Comment"></input>
 </form>
