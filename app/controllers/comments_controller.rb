@@ -17,7 +17,9 @@ end
 # end
 
 delete 'questions/:id/comments/:id'
-  Comment.find_by(id: current_user.id).destroy
+	@question = Question.find_by(id: params[:id])
+    @comment = Comment.find_by(params[:id])
+	@comment.destroy
 end
 
 post '/answer/:id/comments'
@@ -39,5 +41,8 @@ end
 # end
 
 delete '/answer/:id/comments/:id'
-	Comment.find_by(id: current_user.id).destroy
+	@answer = Answer.find_by(id: params[:id])
+    @comment = Comment.find_by(params[:id])
+	@comment.destroy
 end
+	
