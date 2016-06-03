@@ -7,11 +7,18 @@
   <ul>
     <% @questions.reverse.each do |question| %>
       <h3><a href='/questions/<%= question.id %>'><%= question.title %></h3></a>
-      <li>Asked by <a href="/users/<%= question.user.id %>" id="name"><%=question.user.username%></a> on <%= question.created_at %>
+      <li>Asked by <a href="/users/<%= question.user.id %>" id="name"><%=question.user.username%></a> on <%= question.created_at %></li>
+      <li>Votes: <%=question.votes.sum(:value)%></li>
+      <li>Answers: <%=question.answers.length%></li>
       <%if question.user == current_user%>
-      <a href="/questions/<%=question.id%>/edit">Edit Question</a>
+      <a href="/questions/<%=question.id%>/edit">Edit</a>
+      
+      <form id="new_question_form" class="center hidden" method='post' action='/questions/<%=question.id%>'>
+<input type="hidden" name="_method" value="delete">
+  <input type="submit" class="button" value="Delete"></input>
+</form>
       <%end%>
-      </li>
+      
       <hr>
     <% end %>
   </ul>
