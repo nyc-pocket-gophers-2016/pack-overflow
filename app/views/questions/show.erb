@@ -6,13 +6,18 @@
 
 <% if @question.best_answer %>
   <h4>Top answer:</h4>
-  <h3><%= @question.best_answer.body %></h3>
+  <h2><%= @question.best_answer.body %></h2>
+  <h4><a href="/answer/<%=@question.best_answer.id%>/comments/new">Add comment</a></h4>
+  <%@question.best_answer.comments.each do |comment|%>
+  <h4><%=comment.body%></h4>
+  <%end%>
 <% end %>
 
 <!-- print in order of upvotes -->
 <%@question.answers.each do |answer|%>
   <% if !answer.is_best? %>
     <div><%= answer.body %></div>
+  	<h4><a href="/answer/<%=answer.id%>/comments/new">Add comment</a></h4>
   <% end %>
 <% end %>
 
