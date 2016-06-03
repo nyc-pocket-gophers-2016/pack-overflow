@@ -1,11 +1,8 @@
 post '/questions/:id/votes' do
+	binding.pry
 	@question = Question.find_by(id: params[:id])
  	@vote = @question.votes.build(value: params[:value], user: current_user)
- 		if @vote.save
+ 	vote.save
  			#erb :'comment/new'
- 			erb :"/questions/#{@question.id}"
- 		else
-
-    	erb :'/questions/#{@question.id}'
-    end
+ 	erb :"/questions/#{@question.id}"
 end

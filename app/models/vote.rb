@@ -4,10 +4,15 @@ class Vote < ActiveRecord::Base
 
   validates :value, presence: true
 
-  def up
-    
+  def type
+    case votable_type
+    when "Question"
+      Vote.find_by
+    when "Answer"
+      Vote.create(value:1)
+    when "Comment"
+      Vote.find_by
+    end
   end
 
-  def down
-  end
 end

@@ -24,6 +24,8 @@
     <%answer.comments.each do |comment|%>
   <li><%=comment.body%></li>
   <%end%>
+
+  <%= erb :'votes/_vote_container', layout: false, locals: {question: @question} %>
+  
   <% end %>
 <% end %>
-

@@ -9,6 +9,4 @@ class Answer < ActiveRecord::Base
   def is_best?
    return is_best
   end
-
-  def 
 end
