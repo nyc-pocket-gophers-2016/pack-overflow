@@ -1,11 +1,11 @@
  <form method="post" action='/questions/<%=question.id%>/votes'>
    <input type="hidden" name="value" value="1">
-   <button id="up_vote" type="submit"></button>
+   <button type="submit" color="transparent"><div id="up_vote"></div></button>
 </form>
 
-<h3><%=question.votes.sum(:value)%></h3>
+<h3 style=""><%=question.votes.sum(:value)%></h3>
 
 <form method="post" action='/questions/<%=question.id%>/votes'>
   <input type="hidden" name="value" value="-1">
-  <button id="down_vote" type="submit"></button>
+  <button type="submit"><div id="down_vote"></div></button>
 </form>
