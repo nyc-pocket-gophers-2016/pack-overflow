@@ -12,26 +12,35 @@ post '/questions/:id/answers' do
     redirect "/questions/#{@question.id}"
   else
     @error = "You provided an invalid answer. Please try again."
-    erb :'/questions/#{@question.id}'
+    redirect :"/questions/#{@question.id}"
+
   end
 end
 
 #edit answer
-put 'questions/:id/answers/:id' do 
-  @question = Question.find_by(id: params[:id])
-  @answer = Answer.find_by(id: params[:id])
-  @answer.assign_attributes(params[:answer])  
-  if @answer.save #should there be an xhr request?
-    redirect :'/questions/#{@question.id}'
-  else
-    # erb :'/questions/edit'
+get '/questions/:question_id/answers/:answer_id/edit' do
+  @question = Question.find_by(id: params[:question_id])
+  @answer = Answer.find_by(id: params[:answer_id])
+  if current_user && current_user == @answer.user
+    erb :"answers/_edit_answer_partial"
   end
 end
 
+put '/questions/:question_id/answers/:answer_id' do 
+  @question = Question.find_by(id: params[:question_id])
+  @answer = Answer.find_by(id: params[:answer_id])
+  @answer.assign_attributes(params[:answer])  
+  @answer.save #should there be an xhr request?
+    redirect "/questions/#{@question.id}"
+  # else
+  #   # erb :'/questions/edit'
+  # end
+end
+
 #delete answer
-delete 'questions/:id/answers/:id' do
-  @question = Question.find_by(id: params[:id])
-  @answer = Answer.find_by(params[:id])
+delete '/questions/:question_id/answers/:answer_id' do
+  @question = Question.find_by(id: params[:question_id])
+  @answer = Answer.find_by(params[:answer_id])
   if request.xhr?
     @answer.destroy
   else

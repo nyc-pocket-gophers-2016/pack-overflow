@@ -1,0 +1,14 @@
+ <div id="error"><% if @error %>
+    <p><%= @error %></p>
+  <%end%></div>
+
+<form id="new_question_form" class="center hidden" method='post' action='/questions/<%=@question.id%>'>
+<input type="hidden" name="_method" value="put">
+  <label for="question_name">Question Title:</label>
+  <input name="question[title]" type="text" id="question_name" value="<%=@question.title%>"></input>
+  <br>
+  <label for="question_text">Question Body:</label>
+  <textarea name="question[body]" id="question_text"><%=@question.body%></textarea>
+  <br>
+  <input type="submit" class="button" value="Submit"></input>
+</form>
