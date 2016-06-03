@@ -4,7 +4,7 @@ class Answer < ActiveRecord::Base
   has_many :votes, as: :votable
   has_many :comments, as: :commentable
 
-  validates :body, presence: true
+  validates :body, :user_id, presence: true
 
   def is_best?
    return is_best

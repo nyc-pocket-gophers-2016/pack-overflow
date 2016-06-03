@@ -36,13 +36,13 @@ delete 'questions/:id/comments/:id' do
 end
 
 
-get '/answer/:id/comments/new' do
+get '/answers/:id/comments/new' do
 	@answer = Answer.find_by(id: params[:id])
 	# @comment = @question.comments.build(body: params[:body], user: @question.user)
 	erb :'/comments/new'
 end
 
-post '/answer/:id/comments' do
+post '/answers/:id/comments' do
 
 	@answer = Answer.find_by(id: params[:id])
  	@comment = @answer.comments.build(body: params[:body], user: current_user)
@@ -63,7 +63,7 @@ end
 #  		else
 # end
 
-delete '/answer/:id/comments/:id' do
+delete '/answers/:id/comments/:id' do
 	@answer = Answer.find_by(id: params[:id])
     @comment = Comment.find_by(params[:id])
 	@comment.destroy

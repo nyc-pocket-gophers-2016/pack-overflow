@@ -34,22 +34,22 @@ answers = [
 {body: "In giant tupperware.", is_best: true, user: User.third, question: Question.first},
 {body: "Money and bear repelent.", is_best: false, user: User.fourth, question: Question.first},
 
-{body: "This question is great.", is_best: false, user: User.first, question: Question.second},
+{body: "This question is great.", is_best: true, user: User.first, question: Question.second},
 {body: "Do not pack anything.", is_best: false, user: User.second, question: Question.second},
 {body: "In giant tupperware.", is_best: false, user: User.third, question: Question.second},
 {body: "Money and bear repelent.", is_best: false, user: User.fourth, question: Question.second},
 
 {body: "This question is great.", is_best: false, user: User.first, question: Question.third},
 {body: "Do not pack anything.", is_best: false, user: User.second, question: Question.third},
-{body: "In giant tupperware.", is_best: false, user: User.third, question: Question.third},
+{body: "In giant tupperware.", is_best: true, user: User.third, question: Question.third},
 {body: "Money and bear repelent.", is_best: false, user: User.fourth, question: Question.third},
 
-{body: "This question is great.", is_best: false, user: User.first, question: Question.fourth},
+{body: "This question is great.", is_best: true, user: User.first, question: Question.fourth},
 {body: "Do not pack anything.", is_best: false, user: User.second, question: Question.fourth},
 {body: "In giant tupperware.", is_best: false, user: User.third, question: Question.fourth},
 {body: "Money and bear repelent.", is_best: false, user: User.fourth, question: Question.fourth},
 
-{body: "This question is great.", is_best: false, user: User.first, question: Question.fifth},
+{body: "This question is great.", is_best: true, user: User.first, question: Question.fifth},
 {body: "Do not pack anything.", is_best: false, user: User.second, question: Question.fifth},
 {body: "In giant tupperware.", is_best: false, user: User.third, question: Question.fifth},
 {body: "Money and bear repelent.", is_best: false, user: User.fourth, question: Question.fifth},
@@ -57,7 +57,7 @@ answers = [
 {body: "This question is great.", is_best: false, user: User.first, question: Question.last},
 {body: "Do not pack anything.", is_best: false, user: User.second, question: Question.last},
 {body: "In giant tupperware.", is_best: false, user: User.third, question: Question.last},
-{body: "Money and bear repelent.", is_best: false, user: User.fourth, question: Question.last},
+{body: "Money and bear repelent.", is_best: true, user: User.fourth, question: Question.last},
 
 ]
 
