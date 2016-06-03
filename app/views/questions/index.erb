@@ -2,7 +2,7 @@
 
 <div id="question_list_container">
   <% if logged_in?%>
-    <div id='question_container'><button id="new_question_button">Ask a question</button></div>
+    <div id='question_container'><button id="new_question_button">Ask away!</button></div>
   <% end %>
   <ul>
     <% @questions.reverse.each do |question| %>
