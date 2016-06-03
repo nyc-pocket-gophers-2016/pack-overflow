@@ -6,6 +6,8 @@
 <%= erb :'votes/_vote_container', layout: false, locals: {question: @question} %>
 
 <br><br>
+
+
 <% if @question.best_answer %>
   <h4>Top answer:</h4>
   <h2><%= @question.best_answer.body %></h2>
@@ -20,10 +22,18 @@
 <%@question.answers.reverse.each do |answer|%>
   <% if !answer.is_best? %>
     <div><%= answer.body %></div>
+    <%if answer.user == current_user%>
+     <form id="new_question_form" class="center hidden" method='post' action='/questions/<%=@question.id%>'>
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" class="button" value="Delete"></input>
+      </form>
+
+      <%end%>
   	<h4><a href="/answers/<%=answer.id%>/comments/new">Add comment</a></h4>
     <%answer.comments.each do |comment|%>
       <li><%=comment.body%></li>
       <li><%=comment.user.username%></li>
+
     <%end%>
   <% end %>
 <% end %>

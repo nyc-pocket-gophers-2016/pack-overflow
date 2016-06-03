@@ -41,10 +41,10 @@ end
 delete '/questions/:question_id/answers/:answer_id' do
   @question = Question.find_by(id: params[:question_id])
   @answer = Answer.find_by(params[:answer_id])
-  if request.xhr?
+  # if request.xhr?
     @answer.destroy
-  else
-    @answer.destroy
-    redirect "/questions/#{@question.id}"
-  end
+  # else
+  #   @answer.destroy
+     redirect "/questions/#{@question.id}"
+  # end
 end
