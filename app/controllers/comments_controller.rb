@@ -1,3 +1,4 @@
+
 get '/questions/:id/comments/new' do
   # @question = Question.find(params[:id])
   if request.xhr?
@@ -8,16 +9,15 @@ get '/questions/:id/comments/new' do
 
 end
 
-
 post '/questions/:id/comments' do
 	@question = Question.find_by(id: params[:id])
  	@comment = @question.comments.build(body: params[:body], user: current_user)
  		if @comments.save
- 			#erb :'comment/new'
- 			redirect "/questions/#{@question.id}"
+ 			erb :'comments/new'
+ 			# redirect "/questions/#{@question.id}"
  		else
  			@error = "Your comment in invalid."
-    		erb :'/questions/#{@question.id}'
+    		 redirect :'/questions/:id/comments'
     	end
 end
 
@@ -36,17 +36,22 @@ delete 'questions/:id/comments/:id' do
 end
 
 
-
-
+get '/answer/:id/comments/new' do
+	@answer = Answer.find_by(id: params[:id])
+	# @comment = @question.comments.build(body: params[:body], user: @question.user)
+	erb :'/comments/new'
+end
 
 post '/answer/:id/comments' do
+
 	@answer = Answer.find_by(id: params[:id])
- 	@comment = @answer.comments.build(body: params[:body], users: current_user)
- 		if @comments.save
- 		redirect "/answers/#{@answers.id}"
+ 	@comment = @answer.comments.build(body: params[:body], user: current_user)
+ 		if @comment.save
+ 			# binding.pry
+ 		redirect :"/questions/#{@answer.question.id}"
  		else
  			@error = "Your comment in invalid."
-    		erb :'/answers/#{@answer.id}'
+    		erb :'/questions/:id/'
     	end
 end
 
