@@ -3,6 +3,7 @@
 <div><%=@question.user.username%></div>
 <div><%=@question.created_at%></div>
 <h4><a href="/questions/<%=@question.id%>/answers/new">Post Your Answer</a></h4>
+<%= erb :'votes/_vote_container', layout: false, locals: {question: @question} %>
 
 <br><br>
 <% if @question.best_answer %>
@@ -11,7 +12,6 @@
   <h4><a href="/answers/<%=@question.best_answer.id%>/comments/new">Add comment</a></h4>
   <%@question.best_answer.comments.each do |comment|%>
   <li><%=comment.body%></li>
-
   <li><%=comment.user.username%></li>
   <%end%>
 <% end %>
@@ -22,8 +22,8 @@
     <div><%= answer.body %></div>
   	<h4><a href="/answers/<%=answer.id%>/comments/new">Add comment</a></h4>
     <%answer.comments.each do |comment|%>
-  <li><%=comment.body%></li>
-  <%end%>
+      <li><%=comment.body%></li>
+      <li><%=comment.user.username%></li>
+    <%end%>
   <% end %>
 <% end %>
-
