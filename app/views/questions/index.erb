@@ -7,7 +7,11 @@
   <ul>
     <% @questions.reverse.each do |question| %>
       <h3><a href='/questions/<%= question.id %>'><%= question.title %></h3></a>
-      <li>Asked by <a href="/users/<%= question.user.id %>" id="name"><%=question.user.username%></a> on <%= question.created_at %></li>
+      <li>Asked by <a href="/users/<%= question.user.id %>" id="name"><%=question.user.username%></a> on <%= question.created_at %>
+      <%if question.user == current_user%>
+      <a href="/questions/<%=question.id%>/edit">Edit Question</a>
+      <%end%>
+      </li>
       <hr>
     <% end %>
   </ul>

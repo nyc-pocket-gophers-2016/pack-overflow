@@ -12,17 +12,32 @@ get '/questions/new' do
 end
 
 post '/questions' do
-  # params[:question][:view_count] = 0
   params[:question][:user_id] = current_user.id
-
   @question = Question.new(params[:question]) #create new question
-  # binding.pry
   if @question.save #saves new question or returns false if unsuccessful
-
-  # binding.pry
     erb :'questions/_question_item', layout: false, locals: {question: @question} #redirect back to questions index page
   else
-    erb :'questions' # show new questions view again(potentially displaying errors)
+    erb :'questions/_question_item' # show new questions view again(potentially displaying errors)
+  end
+end
+
+get '/questions/:id/edit' do
+  @question = Question.find_by(id: params[:id])
+  if current_user && current_user == @question.user 
+    erb :"/questions/_edit_question"
+  else
+    redirect '/questions/:id'
+  end
+end
+
+put '/questions/:id' do
+  @question = Question.find_by(id: params[:id])
+  @question.assign_attributes(title: params[:question][:title], body: params[:question][:body])
+  @error = "You have entered misinformation, please try again."
+  if @question.save
+    redirect "/"
+  else
+    erb :"questions/_edit_question"
   end
 end
 

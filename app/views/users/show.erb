@@ -4,19 +4,25 @@
 
 <ul>
   <% @user.questions.each do |question| %>
-    <li> <%= question.title %> </li>
+    <li> <%= question.title %> </li>   
   <% end %>
 </ul>
+
+<hr>
 
 <h3> Your Answers </h3>
 
 <ul>
   <% @user.answers.each do |answer| %>
     <li>
+      <h3>Question:</h3>
+      <h3>"<%= answer.question.title %>"</h3>
+      <h5>-<%= answer.question.user.username %></h5>
+      <h3>Your Answer:</h3>
       <div>"<%= answer.body %>"</div>
-      <div>-<%= answer.user.username %></div>
-      <div>"<%= answer.question.title %>"</div>
-      <div>-<%= answer.question.user.username %></div>
+      <h5>-<%= answer.user.username %></h5>
+      <a href='/questions/<%=answer.question.id%>/answers/<%=answer.id%>/edit'>Edit Answers</a>
+      <hr>
     </li>
   <% end %>
 </ul>
