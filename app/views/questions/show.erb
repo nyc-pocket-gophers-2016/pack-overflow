@@ -2,21 +2,23 @@
 <h3><%=@question.body%></h3>
 <div><%=@question.user.username%></div>
 <div><%=@question.created_at%></div>
-<h4><a href="/questions/<%=@question.id%>/answers/new">Post Your Answer</a></h4>
 <%= erb :'votes/_vote_container', layout: false, locals: {question: @question} %>
-
 <br><br>
 
+<h2><a href="/questions/<%=@question.id%>/answers/new">Post Your Answer</a></h2>
+<hr>
 
 <% if @question.best_answer %>
   <h4>Top answer:</h4>
-  <h2><%= @question.best_answer.body %></h2>
+  <h3><%= @question.best_answer.body %></h3>
   <h4><a href="/answers/<%=@question.best_answer.id%>/comments/new">Add comment</a></h4>
+  <br>
   <%@question.best_answer.comments.each do |comment|%>
   <li><%=comment.body%></li>
   <li><%=comment.user.username%></li>
   <%end%>
 <% end %>
+<hr>
 
 <!-- print in order of upvotes -->
 <%@question.answers.reverse.each do |answer|%>
@@ -30,10 +32,12 @@
 
       <%end%>
   	<h4><a href="/answers/<%=answer.id%>/comments/new">Add comment</a></h4>
+    <br>
     <%answer.comments.each do |comment|%>
       <li><%=comment.body%></li>
       <li><%=comment.user.username%></li>
 
     <%end%>
+    <hr>
   <% end %>
 <% end %>

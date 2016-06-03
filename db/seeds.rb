@@ -28,6 +28,7 @@ questions = [
 
 Question.create!(questions)
 
+
 answers = [
 {body: "This question is great.", is_best: false, user: User.first, question: Question.first},
 {body: "Do not pack anything.", is_best: false, user: User.second, question: Question.first},
@@ -58,26 +59,14 @@ answers = [
 {body: "Do not pack anything.", is_best: false, user: User.second, question: Question.last},
 {body: "In giant tupperware.", is_best: false, user: User.third, question: Question.last},
 {body: "Money and bear repelent.", is_best: true, user: User.fourth, question: Question.last},
-
 ]
 
 Answer.create!(answers)
 
 
-# comments = [
-# {body: "This is a horrible question.", user: user.first},
-# {body: "This answer is irrelevant.", user: user.first},
-# {body: "Great question.", user: user.first},
-# {body: "I like packing.", user: user.first}
-
-# ]
-
-# Comment.create!(comments)
-
-
 Question.all.each do |question|
-  5.times do
     user_index = rand(4)
+  5.times do
     comment = question.comments.build(
      body: Faker::Hipster.sentence,
      # comment_count: rand(1000),
@@ -89,6 +78,13 @@ Question.all.each do |question|
       # comment.votes.build(value: 1)
 
     # end
+  end
+  (5 + rand(20)).times do
+    vote = question.votes.build(
+      value: 1, 
+      user: User.all[user_index],
+      created_at: Time.now - rand(20000))
+    vote.save
   end
 end
 
