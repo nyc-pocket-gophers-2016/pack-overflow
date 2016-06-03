@@ -21,6 +21,12 @@ post '/questions' do
   end
 end
 
+delete '/questions/:id' do
+  @question = Question.find_by(id: params[:question_id])
+    @question.destroy
+    redirect '/'
+  end
+
 get '/questions/:id/edit' do
   @question = Question.find_by(id: params[:id])
   if current_user && current_user == @question.user 
