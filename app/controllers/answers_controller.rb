@@ -1,6 +1,13 @@
+get '/questions/:id/answers/new' do
+  @question = Question.find_by(id: params[:id])
+  erb :'/answers/new'
+end
+
 post '/questions/:id/answers' do 
   @question = Question.find_by(id: params[:id])
-  @answer = Answer.new(body: params[:body])
+  @answer = Answer.new(body: params[:body], question_id: @question.id, user: @question.user)
+  # binding.pry
+  
   if @answer.save
     redirect "/questions/#{@question.id}"
   else

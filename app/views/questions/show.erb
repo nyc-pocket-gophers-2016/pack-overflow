@@ -1,23 +1,29 @@
 <h1><%=@question.title%></h1>
 <h3><%=@question.body%></h3>
+<div><%=@question.user.username%></div>
+<div><%=@question.created_at%></div>
+<h4><a href="/questions/<%=@question.id%>/answers/new">Post Your Answer</a></h4>
 
-  <div id='question_comment_container'><button id="new_question_comment_button">Question Comment</button></div>
-  <div id='question_id'><%@question.id%></div>
-
+<br><br>
 <% if @question.best_answer %>
   <h4>Top answer:</h4>
   <h2><%= @question.best_answer.body %></h2>
-  <h4><a href="/answer/<%=@question.best_answer.id%>/comments/new">Add comment</a></h4>
+  <h4><a href="/answers/<%=@question.best_answer.id%>/comments/new">Add comment</a></h4>
   <%@question.best_answer.comments.each do |comment|%>
-  <h4><%=comment.body%></h4>
+  <li><%=comment.body%></li>
+
+  <li><%=comment.user.username%></li>
   <%end%>
 <% end %>
 
 <!-- print in order of upvotes -->
-<%@question.answers.each do |answer|%>
+<%@question.answers.reverse.each do |answer|%>
   <% if !answer.is_best? %>
     <div><%= answer.body %></div>
-  	<h4><a href="/answer/<%=answer.id%>/comments/new">Add comment</a></h4>
+  	<h4><a href="/answers/<%=answer.id%>/comments/new">Add comment</a></h4>
+    <%answer.comments.each do |comment|%>
+  <li><%=comment.body%></li>
+  <%end%>
   <% end %>
 <% end %>
 
